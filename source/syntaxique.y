@@ -23,20 +23,21 @@ Instruction : Declaration
             | IF
             | WHILE
             | FOR
-            |
 ;
-Declaration : type idf Assignment
+Declaration : type idf DecAssignment
             | type idf DecNext
             | type idf tab
 ;
-DecNext: comma DeclarationAssign
+DecNext: comma DecNextAssignment
         |
 ;
-DeclarationAssign       : idf Assignment DecNext
+DecNextAssignment       : idf DecAssignment DecNext
                         | idf DecNext
 ;
-Assignment  : idf assign ValType
-            | idf openBracket intOridf closeBracket assign ValType
+DecAssignment   : assign ValType
+;
+Assignment      : idf assign ValType
+                | idf openBracket intOridf closeBracket assign ValType
 ;
 ValType : operand
         | character
