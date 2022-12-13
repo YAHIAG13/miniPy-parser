@@ -1,0 +1,15 @@
+# this is a comment
+int x, y=50
+z= (-2.13) #this is another comment 
+bool res[100]
+newChar = 'X'
+i = 99
+
+while (i!=0) :
+    res=res+x
+    x=x-1
+    if ((Aa > Bb) == true):
+        Cc=E+2.6
+        for i in range(0,5) :
+            y=y+i
+            res[i] = z or (x+y)

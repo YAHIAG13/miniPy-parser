@@ -1,0 +1,9 @@
+#Le programme calcule la somme des x premiers termes dune suite 
+# arithmetique 
+x =50 
+int y
+
+
+while (x!=0) : 
+    resultat = resultat + x 
+    x = x-1
