@@ -1,7 +1,7 @@
-#Le programme calcule la somme des x premiers termes d’une suite 
-# arithmétique 
+#Le programme calcule la somme des x premiers termes d une suite 
+# arithmetique 
 int x=50 
 resultat =0 
 while (x!=0) : 
- resultat = resultat + x 
- x = x-1 
+    resultat = resultat + x 
+    x = x-1 

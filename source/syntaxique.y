@@ -9,26 +9,29 @@
         lessOrEqual greatOrEqual less great equal notEqual
         pls min divs mul
 %right  assign
-%left   pls min
+%right  mc_not
 %left   mc_and mc_or
+%left   lessOrEqual greatOrEqual less great equal notEqual
+%left   pls min
 %left   mul divs
 
 %%
-Prog  : Instruction Prog
-      |
-      { printf("Le programme est correcte syntaxiquement\n"); YYACCEPT; }
+Prog    : Instruction Prog
+        |
+        { printf("Le programme est correcte syntaxiquement\n"); YYACCEPT; }
 ;
-Instruction : Declaration 
-            | Assignment 
-            | IF
-            | WHILE
-            | FOR
+Instruction     : Declaration 
+                | Assignment 
+                | IF
+                | WHILE
+                | FOR
 ;
-Declaration : type idf DecAssignment
-            | type idf DecNext
-            | type idf tab
+
+Declaration     : type idf DecAssignment
+                | type idf DecNext
+                | type idf tab
 ;
-DecNext: comma DecNextAssignment
+DecNext : comma DecNextAssignment
         |
 ;
 DecNextAssignment       : idf DecAssignment DecNext
@@ -39,62 +42,70 @@ DecAssignment   : assign ValType
 Assignment      : idf assign ValType
                 | idf openBracket intOridf closeBracket assign ValType
 ;
-ValType : operand
+ValType : arithmeticOperand
+        | logicOperand
         | character
 ;
 
-intOridf  : integer
-          | idf
+intOridf        : integer
+                | idf
+;
+type    : mc_int
+        | mc_float
+        | mc_char
+        | mc_bool
+;
+tab     : openBracket integer closeBracket
 ;
 
-IF: mc_if openParenthesis ConditionGroup closeParenthesis colon Instruction
-  | mc_if openParenthesis ConditionGroup closeParenthesis colon Instruction ELSE
+IF      : mc_if openParenthesis logicOperand closeParenthesis colon Instruction
+        | mc_if openParenthesis logicOperand closeParenthesis colon Instruction ELSE
 ;
-ELSE: mc_else colon Instruction
+ELSE    : mc_else colon Instruction
 ;
-
-WHILE: mc_while openParenthesis ConditionGroup closeParenthesis colon Instruction
+WHILE   : mc_while openParenthesis logicOperand closeParenthesis colon Instruction
 ;
-
-FOR: mc_for idf mc_in forType colon Instruction
+FOR     : mc_for idf mc_in forType colon Instruction
 ;
 forType : range
         | idf
 ;
+range   : mc_range openParenthesis integer comma integer closeParenthesis
+;
 
-ConditionGroup: ConditionGroup logicOperatorBin ConditionGroup
-              | mc_not ConditionGroup
-              | Condition
-;
-Condition : logicExpression
-          | comparisonExpression
-;
-logicExpression : logicOperand logicOperatorBin logicOperand
+logicExpression : logicOperand mc_and logicOperand
+                | logicOperand mc_or logicOperand
                 | mc_not logicOperand
-                | logicOperand
-;
-comparisonExpression: operand comparisonOperator operand
 ;
 
-arithmeticExpression: operand arithmeticOperator operand
-;
-operand : integer
-        | real
-        | idf
-        | openParenthesis arithmeticExpression closeParenthesis
-        | arithmeticExpression
-        | Condition
-        | openParenthesis Condition closeParenthesis
+comparisonExpression    : arithmeticOperand equal arithmeticOperand
+                        | arithmeticOperand notEqual arithmeticOperand
+                        | arithmeticOperand lessOrEqual arithmeticOperand
+                        | arithmeticOperand greatOrEqual arithmeticOperand
+                        | arithmeticOperand less arithmeticOperand
+                        | arithmeticOperand great arithmeticOperand
 ;
 
-logicOperand: booleen|idf|
+arithmeticExpression    : arithmeticOperand mul arithmeticOperand
+                        | arithmeticOperand divs arithmeticOperand
+                        | arithmeticOperand pls arithmeticOperand
+                        | arithmeticOperand min arithmeticOperand
 ;
-logicOperatorBin: mc_and|mc_or;
-comparisonOperator: lessOrEqual|greatOrEqual|less|great|equal|notEqual;
-arithmeticOperator: pls|min|divs|mul;
-type: mc_int|mc_float|mc_char|mc_bool;
-tab: openBracket integer closeBracket;
-range: mc_range openParenthesis integer comma integer closeParenthesis;
+
+arithmeticOperand       : idf
+                        | integer
+                        | real
+                        | arithmeticExpression
+                        | openParenthesis arithmeticOperand closeParenthesis
+;
+
+logicOperand    : idf
+                | booleen
+                | comparisonExpression
+                | logicExpression
+                | openParenthesis logicOperand closeParenthesis
+;
+
 %%
 
 main()
@@ -104,6 +115,6 @@ main()
 yywrap()
 {}
 int yyerror (char *msg ) { 
-  printf ("ERREUR SYNTAXIQUE:S ligne %d, colonne %d \n",nb_ligne,nb_colone); 
+  printf ("ERREUR SYNTAXIQUE: ligne %d, colonne %d \n",nb_ligne,nb_colone); 
   return 1; 
 }
