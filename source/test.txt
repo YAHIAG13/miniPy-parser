@@ -1,5 +1,5 @@
 # this is a comment
-int x = ((y))
+int x = 1 + m
 z= (-2.13) #this is another comment 
 bool res[100]
 newChar = 'X'
@@ -9,9 +9,9 @@ bool test = g < f
 while (i!=0) :
     res=res+x
     x=x-1
-    if ((5+9*(1/2)) >= (m) and true) :
+    if (m and true) :
         Cc=E+2.6
     else:
         for i in range(0,5) :
             y=y+i
-            res[i] = ((5==2) or (((x+y-(1/b)*(c+d+e))/2+5)<6))
+            res[i] = (g or (((x+y-(1/b)*(c+d+e))/2+5)<6))

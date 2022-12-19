@@ -1673,11 +1673,16 @@ yyreturn:
 
 main()
 {
-  yyparse();
+        Init_TS();
+        yyparse();
+        Print_TS();
 }
 yywrap()
-{}
-int yyerror (char *msg ) { 
-  printf ("ERREUR SYNTAXIQUE: ligne %d, colonne %d \n",nb_ligne,nb_colone); 
-  return 1; 
+{
+
+}
+int yyerror (char *msg )
+{ 
+        printf ("ERREUR SYNTAXIQUE: ligne %d, colonne %d \n",nb_ligne,nb_colone); 
+        return 1; 
 }

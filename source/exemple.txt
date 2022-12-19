@@ -1,6 +1,6 @@
 #Le programme calcule la somme des x premiers termes d une suite 
 # arithmetique 
-int x=50 
+int x=(-2.66) 
 resultat =0 
 while (x!=0) : 
     resultat = resultat + x 
