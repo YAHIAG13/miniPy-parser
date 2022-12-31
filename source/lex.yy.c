@@ -430,10 +430,13 @@ char *yytext;
 extern nb_ligne;
 extern nb_colone;
 
+#include"ts.h" 
 #include"syntaxique.tab.h"
-#include"ts.h"
+#include"other.h"
 
-#line 437 "lex.yy.c"
+extern YYSTYPE yylval;
+
+#line 440 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -584,9 +587,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 28 "lexical.l"
+#line 31 "lexical.l"
 
-#line 590 "lex.yy.c"
+#line 593 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -671,7 +674,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 29 "lexical.l"
+#line 32 "lexical.l"
 {
             printf("IF\n");
             nb_colone += strlen(yytext);
@@ -681,7 +684,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 35 "lexical.l"
+#line 38 "lexical.l"
 {
             printf("ELSE\n");
             nb_colone += strlen(yytext);
@@ -691,7 +694,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 41 "lexical.l"
+#line 44 "lexical.l"
 {
             printf("FOR\n");
             nb_colone += strlen(yytext);
@@ -701,7 +704,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 47 "lexical.l"
+#line 50 "lexical.l"
 {
             printf("WHILE\n");
             nb_colone += strlen(yytext);
@@ -711,7 +714,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 53 "lexical.l"
+#line 56 "lexical.l"
 {
             printf("IN\n");
             nb_colone += strlen(yytext);
@@ -721,7 +724,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 59 "lexical.l"
+#line 62 "lexical.l"
 {
             printf("RANGE\n");
             nb_colone += strlen(yytext);
@@ -731,47 +734,51 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 65 "lexical.l"
+#line 68 "lexical.l"
 {
             printf("INT\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = INT;
             return mc_int;
         }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 71 "lexical.l"
+#line 75 "lexical.l"
 {
             printf("FLOAT\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = FLOAT;
             return mc_float;
         }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 77 "lexical.l"
+#line 82 "lexical.l"
 {
             printf("CHAR\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = CHAR;
             return mc_char;
         }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 83 "lexical.l"
+#line 89 "lexical.l"
 {
             printf("BOOL\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = BOOL;
             return mc_bool;
         }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 89 "lexical.l"
+#line 96 "lexical.l"
 {
             printf("AND\n");
             nb_colone += strlen(yytext);
@@ -781,7 +788,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 95 "lexical.l"
+#line 102 "lexical.l"
 {
             printf("OR\n");
             nb_colone += strlen(yytext);
@@ -791,7 +798,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 101 "lexical.l"
+#line 108 "lexical.l"
 {
             printf("NOT\n");
             nb_colone += strlen(yytext);
@@ -801,57 +808,71 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 108 "lexical.l"
+#line 115 "lexical.l"
 {   printf("%f : int\n", re_atof(yytext, strlen(yytext)));
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "entier", "int",re_atof(yytext, strlen(yytext)), 0);
+            Find_TS(yytext, "entier", "int",re_atof(yytext, strlen(yytext)), EV);
+            yylval.valtype.val.I = (int) re_atof(yytext, strlen(yytext));
+            yylval.valtype.type=INT;
             return integer;
         }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 113 "lexical.l"
+#line 122 "lexical.l"
 {   printf("%f : float\n", re_atof(yytext, strlen(yytext)));
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "reel", "float", re_atof(yytext, strlen(yytext)), 0);
+            Find_TS(yytext, "reel", "float", re_atof(yytext, strlen(yytext)), EV);
+            yylval.valtype.val.F = re_atof(yytext, strlen(yytext));
+            yylval.valtype.type = FLOAT;
             return real;
         }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 118 "lexical.l"
+#line 129 "lexical.l"
 {   printf("%s : char\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "character", "char", 0, 0);
+            Find_TS(yytext, "character", "char", 0, EV);
+            yylval.valtype.val.C = strdup(yytext)[1];
+            yylval.valtype.type = CHAR;
             return character;
         }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 123 "lexical.l"
+#line 136 "lexical.l"
 {   printf("%s : bool\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "booleen", "bool", 0, 0);
+            Find_TS(yytext, "booleen", "bool", 0, EV);
+            if(strcmp(yytext, "true")==0)
+            {
+                yylval.valtype.val.B = true;
+            }else{
+                yylval.valtype.val.B = false;
+            }
+            yylval.valtype.type = BOOL;
             return booleen;
         }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 128 "lexical.l"
+#line 148 "lexical.l"
 {   printf("%s : idf\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "identifier", "", 0, 0);
+            Find_TS(yytext, "identifier", "", 0, EV);
+            yylval.str = (char *) strdup(yytext);
             return idf;
         }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 133 "lexical.l"
+#line 154 "lexical.l"
 {printf("%s : comment\n", yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 135 "lexical.l"
+#line 156 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -860,7 +881,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 140 "lexical.l"
+#line 161 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -869,7 +890,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 145 "lexical.l"
+#line 166 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -878,7 +899,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 150 "lexical.l"
+#line 171 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -887,7 +908,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 155 "lexical.l"
+#line 176 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -896,7 +917,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 160 "lexical.l"
+#line 181 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -905,7 +926,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 166 "lexical.l"
+#line 187 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -914,7 +935,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 171 "lexical.l"
+#line 192 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -923,7 +944,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 176 "lexical.l"
+#line 197 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -932,7 +953,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 181 "lexical.l"
+#line 202 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -941,7 +962,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 187 "lexical.l"
+#line 208 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -950,7 +971,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 192 "lexical.l"
+#line 213 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -959,7 +980,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 197 "lexical.l"
+#line 218 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -968,7 +989,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 202 "lexical.l"
+#line 223 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -977,7 +998,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 207 "lexical.l"
+#line 228 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -986,7 +1007,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 212 "lexical.l"
+#line 233 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -995,7 +1016,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 217 "lexical.l"
+#line 238 "lexical.l"
 {
             nb_colone += strlen(yytext);
             Find_TS(yytext, "SP", "", 0, ES);
@@ -1004,25 +1025,25 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 223 "lexical.l"
+#line 244 "lexical.l"
 {nb_colone += strlen(yytext);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 224 "lexical.l"
+#line 245 "lexical.l"
 {nb_ligne++; nb_colone = 1;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 225 "lexical.l"
+#line 246 "lexical.l"
 {printf("ERREUR LEXICAL: line %d, colonne %d, entite: %s\n",nb_ligne,nb_colone,yytext);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 226 "lexical.l"
+#line 247 "lexical.l"
 ECHO;
 	YY_BREAK
-#line 1026 "lex.yy.c"
+#line 1047 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1908,4 +1929,5 @@ int main()
 	return 0;
 	}
 #endif
-#line 226 "lexical.l"
+#line 247 "lexical.l"
+

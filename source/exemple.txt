@@ -1,7 +1,7 @@
 #Le programme calcule la somme des x premiers termes d une suite 
 # arithmetique 
 int x=(-2.66) 
-resultat =0 
-while (x!=0) : 
+resultat = 0 
+while (x > 5) : 
     resultat = resultat + x 
     x = x-1 

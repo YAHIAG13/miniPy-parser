@@ -7,8 +7,11 @@
 extern nb_ligne;
 extern nb_colone;
 
+#include"ts.h" 
 #include"syntaxique.tab.h"
-#include"ts.h"
+#include"other.h"
+
+extern YYSTYPE yylval;
 
 %}
 
@@ -66,24 +69,28 @@ int     {
             printf("INT\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = INT;
             return mc_int;
         }
 float   {
             printf("FLOAT\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = FLOAT;
             return mc_float;
         }
 char    {
             printf("CHAR\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = CHAR;
             return mc_char;
         }
 bool    {
             printf("BOOL\n");
             nb_colone += strlen(yytext);
             Find_TS(yytext, "MC", "", 0, EM);
+            yylval.type = BOOL;
             return mc_bool;
         }
 and     {
@@ -107,27 +114,41 @@ not     {
 
 {int}   {   printf("%f : int\n", re_atof(yytext, strlen(yytext)));
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "entier", "int",re_atof(yytext, strlen(yytext)), 0);
+            Find_TS(yytext, "entier", "int",re_atof(yytext, strlen(yytext)), EV);
+            yylval.valtype.val.I = (int) re_atof(yytext, strlen(yytext));
+            yylval.valtype.type=INT;
             return integer;
         }
 {float} {   printf("%f : float\n", re_atof(yytext, strlen(yytext)));
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "reel", "float", re_atof(yytext, strlen(yytext)), 0);
+            Find_TS(yytext, "reel", "float", re_atof(yytext, strlen(yytext)), EV);
+            yylval.valtype.val.F = re_atof(yytext, strlen(yytext));
+            yylval.valtype.type = FLOAT;
             return real;
         }
 {char}  {   printf("%s : char\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "character", "char", 0, 0);
+            Find_TS(yytext, "character", "char", 0, EV);
+            yylval.valtype.val.C = strdup(yytext)[1];
+            yylval.valtype.type = CHAR;
             return character;
         }
 {bool}  {   printf("%s : bool\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "booleen", "bool", 0, 0);
+            Find_TS(yytext, "booleen", "bool", 0, EV);
+            if(strcmp(yytext, "true")==0)
+            {
+                yylval.valtype.val.B = true;
+            }else{
+                yylval.valtype.val.B = false;
+            }
+            yylval.valtype.type = BOOL;
             return booleen;
         }
 {idf}   {   printf("%s : idf\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "identifier", "", 0, 0);
+            Find_TS(yytext, "identifier", "", 0, EV);
+            yylval.str = (char *) strdup(yytext);
             return idf;
         }
 {comment}   {printf("%s : comment\n", yytext);}

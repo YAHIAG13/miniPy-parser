@@ -32,6 +32,17 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
+/* "%code requires" blocks.  */
+
+/* Line 1676 of yacc.c  */
+#line 8 "syntaxique.y"
+
+        #include"tv.h"
+
+
+
+/* Line 1676 of yacc.c  */
+#line 46 "syntaxique.tab.h"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -45,13 +56,13 @@
      mc_while = 261,
      mc_in = 262,
      mc_range = 263,
-     mc_int = 264,
-     mc_float = 265,
-     mc_char = 266,
-     mc_bool = 267,
-     mc_and = 268,
-     mc_or = 269,
-     mc_not = 270,
+     mc_and = 264,
+     mc_or = 265,
+     mc_not = 266,
+     mc_int = 267,
+     mc_float = 268,
+     mc_char = 269,
+     mc_bool = 270,
      colon = 271,
      comma = 272,
      assign = 273,
@@ -59,28 +70,42 @@
      closeParenthesis = 275,
      openBracket = 276,
      closeBracket = 277,
-     integer = 278,
-     real = 279,
-     character = 280,
-     booleen = 281,
-     idf = 282,
-     lessOrEqual = 283,
-     greatOrEqual = 284,
-     less = 285,
-     great = 286,
-     equal = 287,
-     notEqual = 288,
-     pls = 289,
-     min = 290,
-     divs = 291,
-     mul = 292
+     idf = 278,
+     lessOrEqual = 279,
+     greatOrEqual = 280,
+     less = 281,
+     great = 282,
+     equal = 283,
+     notEqual = 284,
+     pls = 285,
+     min = 286,
+     divs = 287,
+     mul = 288,
+     integer = 289,
+     real = 290,
+     character = 291,
+     booleen = 292
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 1676 of yacc.c  */
+#line 12 "syntaxique.y"
+
+        char type;
+        char *str;
+        struct vt valtype;   
+
+
+
+/* Line 1676 of yacc.c  */
+#line 108 "syntaxique.tab.h"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

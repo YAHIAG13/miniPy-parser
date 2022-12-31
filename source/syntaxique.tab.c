@@ -72,10 +72,13 @@
 
     int nb_ligne = 1;
     int nb_colone = 1;
+    int num_errors = 0;
+    int yyerror();
+        
 
 
 /* Line 189 of yacc.c  */
-#line 79 "syntaxique.tab.c"
+#line 82 "syntaxique.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -95,6 +98,17 @@
 # define YYTOKEN_TABLE 0
 #endif
 
+/* "%code requires" blocks.  */
+
+/* Line 209 of yacc.c  */
+#line 8 "syntaxique.y"
+
+        #include"tv.h"
+
+
+
+/* Line 209 of yacc.c  */
+#line 112 "syntaxique.tab.c"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -108,13 +122,13 @@
      mc_while = 261,
      mc_in = 262,
      mc_range = 263,
-     mc_int = 264,
-     mc_float = 265,
-     mc_char = 266,
-     mc_bool = 267,
-     mc_and = 268,
-     mc_or = 269,
-     mc_not = 270,
+     mc_and = 264,
+     mc_or = 265,
+     mc_not = 266,
+     mc_int = 267,
+     mc_float = 268,
+     mc_char = 269,
+     mc_bool = 270,
      colon = 271,
      comma = 272,
      assign = 273,
@@ -122,28 +136,42 @@
      closeParenthesis = 275,
      openBracket = 276,
      closeBracket = 277,
-     integer = 278,
-     real = 279,
-     character = 280,
-     booleen = 281,
-     idf = 282,
-     lessOrEqual = 283,
-     greatOrEqual = 284,
-     less = 285,
-     great = 286,
-     equal = 287,
-     notEqual = 288,
-     pls = 289,
-     min = 290,
-     divs = 291,
-     mul = 292
+     idf = 278,
+     lessOrEqual = 279,
+     greatOrEqual = 280,
+     less = 281,
+     great = 282,
+     equal = 283,
+     notEqual = 284,
+     pls = 285,
+     min = 286,
+     divs = 287,
+     mul = 288,
+     integer = 289,
+     real = 290,
+     character = 291,
+     booleen = 292
    };
 #endif
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+typedef union YYSTYPE
+{
+
+/* Line 214 of yacc.c  */
+#line 12 "syntaxique.y"
+
+        char type;
+        char *str;
+        struct vt valtype;   
+
+
+
+/* Line 214 of yacc.c  */
+#line 174 "syntaxique.tab.c"
+} YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -154,7 +182,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 158 "syntaxique.tab.c"
+#line 186 "syntaxique.tab.c"
 
 #ifdef short
 # undef short
@@ -369,16 +397,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  22
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   133
+#define YYLAST   158
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  38
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  23
+#define YYNNTS  20
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  59
+#define YYNRULES  54
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  115
+#define YYNSTATES  106
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -428,47 +456,46 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     6,     7,     9,    11,    13,    15,    17,
-      21,    25,    29,    32,    33,    37,    40,    43,    47,    54,
-      56,    58,    60,    62,    64,    66,    68,    70,    72,    76,
-      83,    91,    95,   102,   109,   111,   113,   120,   124,   128,
-     131,   135,   139,   143,   147,   151,   155,   159,   163,   167,
-     171,   173,   175,   177,   179,   183,   185,   187,   189,   191
+      20,    24,    28,    34,    36,    40,    44,    51,    53,    55,
+      57,    59,    61,    63,    65,    67,    71,    78,    86,    90,
+      97,   104,   106,   108,   115,   119,   123,   126,   130,   134,
+     138,   142,   146,   150,   154,   158,   162,   166,   168,   170,
+     172,   174,   176,   178,   180
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      39,     0,    -1,    40,    39,    -1,    -1,    41,    -1,    45,
-      -1,    50,    -1,    52,    -1,    53,    -1,    48,    27,    44,
-      -1,    48,    27,    42,    -1,    48,    27,    49,    -1,    17,
-      43,    -1,    -1,    27,    44,    42,    -1,    27,    42,    -1,
-      18,    46,    -1,    27,    18,    46,    -1,    27,    21,    47,
-      22,    18,    46,    -1,    59,    -1,    60,    -1,    25,    -1,
-      23,    -1,    27,    -1,     9,    -1,    10,    -1,    11,    -1,
-      12,    -1,    21,    23,    22,    -1,     3,    19,    60,    20,
-      16,    40,    -1,     3,    19,    60,    20,    16,    40,    51,
-      -1,     4,    16,    40,    -1,     6,    19,    60,    20,    16,
-      40,    -1,     5,    27,     7,    54,    16,    40,    -1,    55,
-      -1,    27,    -1,     8,    19,    23,    17,    23,    20,    -1,
-      60,    13,    60,    -1,    60,    14,    60,    -1,    15,    60,
-      -1,    59,    32,    59,    -1,    59,    33,    59,    -1,    59,
-      28,    59,    -1,    59,    29,    59,    -1,    59,    30,    59,
-      -1,    59,    31,    59,    -1,    59,    37,    59,    -1,    59,
-      36,    59,    -1,    59,    34,    59,    -1,    59,    35,    59,
-      -1,    27,    -1,    23,    -1,    24,    -1,    58,    -1,    19,
-      59,    20,    -1,    27,    -1,    26,    -1,    57,    -1,    56,
-      -1,    19,    60,    20,    -1
+      39,     0,    -1,    40,    39,    -1,    -1,    41,    -1,    43,
+      -1,    48,    -1,    50,    -1,    51,    -1,    46,    42,    -1,
+      46,    23,    47,    -1,    23,    17,    42,    -1,    23,    18,
+      44,    17,    42,    -1,    23,    -1,    23,    18,    44,    -1,
+      23,    18,    44,    -1,    23,    21,    45,    22,    18,    44,
+      -1,    57,    -1,    36,    -1,    34,    -1,    23,    -1,    12,
+      -1,    13,    -1,    14,    -1,    15,    -1,    21,    34,    22,
+      -1,     3,    19,    57,    20,    16,    40,    -1,     3,    19,
+      57,    20,    16,    40,    49,    -1,     4,    16,    40,    -1,
+       6,    19,    57,    20,    16,    40,    -1,     5,    23,     7,
+      52,    16,    40,    -1,    53,    -1,    23,    -1,     8,    19,
+      34,    17,    34,    20,    -1,    57,     9,    57,    -1,    57,
+      10,    57,    -1,    11,    57,    -1,    57,    28,    57,    -1,
+      57,    29,    57,    -1,    57,    24,    57,    -1,    57,    25,
+      57,    -1,    57,    26,    57,    -1,    57,    27,    57,    -1,
+      57,    33,    57,    -1,    57,    32,    57,    -1,    57,    30,
+      57,    -1,    57,    31,    57,    -1,    23,    -1,    34,    -1,
+      35,    -1,    37,    -1,    56,    -1,    55,    -1,    54,    -1,
+      19,    57,    20,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_uint16 yyrline[] =
 {
-       0,    19,    19,    21,    23,    24,    25,    26,    27,    30,
-      31,    32,    34,    35,    37,    38,    40,    42,    43,    45,
-      46,    47,    50,    51,    53,    54,    55,    56,    58,    61,
-      62,    64,    66,    68,    70,    71,    73,    76,    77,    78,
-      81,    82,    83,    84,    85,    86,    89,    90,    91,    92,
-      95,    96,    97,    98,    99,   102,   103,   104,   105,   106
+       0,    36,    36,    37,    39,    40,    41,    42,    43,    45,
+      46,    49,    50,    51,    52,    54,    72,    74,    78,    81,
+      82,    84,    85,    86,    87,    89,    92,    93,    95,    97,
+      99,   101,   102,   104,   107,   117,   127,   139,   177,   215,
+     253,   291,   329,   369,   409,   474,   514,   556,   580,   584,
+     588,   592,   596,   600,   604
 };
 #endif
 
@@ -478,16 +505,15 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "mc_if", "mc_else", "mc_for", "mc_while",
-  "mc_in", "mc_range", "mc_int", "mc_float", "mc_char", "mc_bool",
-  "mc_and", "mc_or", "mc_not", "colon", "comma", "assign",
-  "openParenthesis", "closeParenthesis", "openBracket", "closeBracket",
-  "integer", "real", "character", "booleen", "idf", "lessOrEqual",
+  "mc_in", "mc_range", "mc_and", "mc_or", "mc_not", "mc_int", "mc_float",
+  "mc_char", "mc_bool", "colon", "comma", "assign", "openParenthesis",
+  "closeParenthesis", "openBracket", "closeBracket", "idf", "lessOrEqual",
   "greatOrEqual", "less", "great", "equal", "notEqual", "pls", "min",
-  "divs", "mul", "$accept", "Prog", "Instruction", "Declaration",
-  "DecNext", "DecNextAssignment", "DecAssignment", "Assignment", "ValType",
-  "intOridf", "type", "tab", "IF", "ELSE", "WHILE", "FOR", "forType",
-  "range", "logicExpression", "comparisonExpression",
-  "arithmeticExpression", "arithmeticOperand", "logicOperand", 0
+  "divs", "mul", "integer", "real", "character", "booleen", "$accept",
+  "Prog", "Instruction", "Declaration", "ListDeclaration", "Assignment",
+  "Val", "intOridf", "type", "tab", "IF", "ELSE", "WHILE", "FOR",
+  "forType", "range", "logicExpression", "comparisonExpression",
+  "arithmeticExpression", "Operand", 0
 };
 #endif
 
@@ -507,22 +533,22 @@ static const yytype_uint16 yytoknum[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    38,    39,    39,    40,    40,    40,    40,    40,    41,
-      41,    41,    42,    42,    43,    43,    44,    45,    45,    46,
-      46,    46,    47,    47,    48,    48,    48,    48,    49,    50,
-      50,    51,    52,    53,    54,    54,    55,    56,    56,    56,
-      57,    57,    57,    57,    57,    57,    58,    58,    58,    58,
-      59,    59,    59,    59,    59,    60,    60,    60,    60,    60
+      41,    42,    42,    42,    42,    43,    43,    44,    44,    45,
+      45,    46,    46,    46,    46,    47,    48,    48,    49,    50,
+      51,    52,    52,    53,    54,    54,    54,    55,    55,    55,
+      55,    55,    55,    56,    56,    56,    56,    57,    57,    57,
+      57,    57,    57,    57,    57
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     0,     1,     1,     1,     1,     1,     3,
-       3,     3,     2,     0,     3,     2,     2,     3,     6,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     3,     6,
-       7,     3,     6,     6,     1,     1,     6,     3,     3,     2,
-       3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       1,     1,     1,     1,     3,     1,     1,     1,     1,     3
+       0,     2,     2,     0,     1,     1,     1,     1,     1,     2,
+       3,     3,     5,     1,     3,     3,     6,     1,     1,     1,
+       1,     1,     1,     1,     1,     3,     6,     7,     3,     6,
+       6,     1,     1,     6,     3,     3,     2,     3,     3,     3,
+       3,     3,     3,     3,     3,     3,     3,     1,     1,     1,
+       1,     1,     1,     1,     3
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -530,112 +556,111 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       3,     0,     0,     0,    24,    25,    26,    27,     0,     0,
+       3,     0,     0,     0,    21,    22,    23,    24,     0,     0,
        3,     4,     5,     0,     6,     7,     8,     0,     0,     0,
-       0,     0,     1,     2,    13,     0,     0,    51,    52,    56,
-      50,    58,    57,    53,     0,     0,     0,     0,    21,    17,
-      19,    20,    22,    23,     0,     0,     0,     0,    10,     9,
-      11,    39,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,    35,     0,
-      34,     0,     0,    13,    12,    16,     0,    54,    59,     0,
-      50,    42,    43,    44,    45,    40,    41,    48,    49,    47,
-      46,    37,    38,     0,     0,     0,     0,     0,    15,    13,
-      28,     0,    29,     0,    33,    32,    18,    14,     0,    30,
-       0,     0,     0,    31,    36
+       0,     0,     1,     2,    13,     9,     0,     0,    47,    48,
+      49,    50,    53,    52,    51,     0,     0,     0,    18,    15,
+      17,    20,    19,     0,     0,     0,     0,    10,    36,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,    32,     0,    31,     0,     0,    13,
+      11,    14,     0,    54,    34,    35,     0,    39,    40,    41,
+      42,    37,    38,    45,    46,    44,    43,     0,     0,     0,
+       0,     0,    25,    26,     0,    30,    29,    16,    12,     0,
+      27,     0,     0,     0,    28,    33
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     9,    10,    11,    48,    74,    49,    12,    39,    44,
-      13,    50,    14,   109,    15,    16,    69,    70,    31,    32,
-      33,    34,    41
+      -1,     9,    10,    11,    25,    12,    39,    43,    13,    47,
+      14,   100,    15,    16,    65,    66,    32,    33,    34,    40
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -82
+#define YYPACT_NINF -71
 static const yytype_int8 yypact[] =
 {
-      51,     9,   -11,    25,   -82,   -82,   -82,   -82,     4,    53,
-      51,   -82,   -82,    24,   -82,   -82,   -82,    61,    48,    61,
-      -6,     0,   -82,   -82,    94,    61,    61,   -82,   -82,   -82,
-      19,   -82,   -82,   -82,    62,    69,    -3,    89,   -82,   -82,
-      62,   107,   -82,   -82,    57,    54,    -6,    63,   -82,   -82,
-     -82,   107,    38,    93,    81,    81,    81,    81,    81,    81,
-      81,    81,    81,    81,    61,    61,    85,    91,   -82,    98,
-     -82,   106,   105,   -10,   -82,   -82,   102,   -82,   -82,    81,
-     -82,    82,    82,    82,    82,    82,    82,    28,    28,   -82,
-     -82,   -82,   -82,    51,   103,    51,    51,    -6,   -82,   108,
-     -82,    11,   123,   111,   -82,   -82,   -82,   -82,   113,   -82,
-     109,    51,   110,   -82,   -82
+      52,   -17,   -15,     2,   -71,   -71,   -71,   -71,    15,    12,
+      52,   -71,   -71,    31,   -71,   -71,   -71,    37,     9,    37,
+      -6,   -14,   -71,   -71,     6,   -71,    37,    37,   -71,   -71,
+     -71,   -71,   -71,   -71,   -71,    53,    -1,    78,   -71,   -71,
+     115,   -71,   -71,    39,    36,    -6,    34,   -71,   115,   103,
+      37,    37,    54,    37,    37,    37,    37,    37,    37,    37,
+      37,    37,    37,    50,   -71,    60,   -71,    73,    72,    -3,
+     -71,    74,    70,   -71,   125,   125,    52,    20,    20,    20,
+      20,    20,    20,    -7,    -7,   -71,   -71,    59,    52,    52,
+      -6,    36,   -71,    90,    79,   -71,   -71,   -71,   -71,    81,
+     -71,    61,    52,    80,   -71,   -71
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -82,   121,   -81,   -82,   -70,   -82,    60,   -82,   -45,   -82,
-     -82,   -82,   -82,   -82,   -82,   -82,   -82,   -82,   -82,   -82,
-     -82,   -20,   -15
+     -71,    89,   -70,   -71,   -44,   -71,   -41,   -71,   -71,   -71,
+     -71,   -71,   -71,   -71,   -71,   -71,   -71,   -71,   -71,   -16
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule which
    number is the opposite.  If zero, do what YYDEFACT says.
    If YYTABLE_NINF, syntax error.  */
-#define YYTABLE_NINF -56
-static const yytype_int8 yytable[] =
+#define YYTABLE_NINF -1
+static const yytype_uint8 yytable[] =
 {
-      40,    75,    35,    98,    37,    67,    52,    45,    46,    25,
-      51,    53,   102,    26,   104,   105,    18,    27,    28,    38,
-      29,    30,    20,    42,    68,    21,    40,    43,    17,   107,
-     113,    77,   -55,   -55,    81,    82,    83,    84,    85,    86,
-      87,    88,    89,    90,    19,    60,    61,    62,    63,    91,
-      92,    24,   106,    22,     1,    36,     2,     3,    77,   101,
-       4,     5,     6,     7,    62,    63,    54,    55,    56,    57,
-      58,    59,    60,    61,    62,    63,    25,    40,     8,    72,
-      26,    73,    64,    65,    27,    28,    76,    29,    30,    66,
-      54,    55,    56,    57,    58,    59,    60,    61,    62,    63,
-      79,    93,    64,    65,    27,    28,    64,    65,    80,    71,
-      94,    45,    46,    78,    95,    47,    60,    61,    62,    63,
-      64,    65,    96,    97,   100,    45,   103,   108,   110,   111,
-     114,    23,   112,    99
+      70,    35,    17,    37,    71,    26,    93,    63,    18,    41,
+      48,    49,    22,    27,    44,    45,    36,    28,    95,    96,
+      42,    19,    64,    44,    45,    61,    62,    46,    29,    30,
+      38,    31,   104,    20,    74,    75,    21,    77,    78,    79,
+      80,    81,    82,    83,    84,    85,    86,    98,    26,    97,
+      59,    60,    61,    62,    24,     1,    27,     2,     3,    69,
+      28,    68,    50,    51,     4,     5,     6,     7,    72,    87,
+      76,    29,    30,    52,    31,     8,    88,    53,    54,    55,
+      56,    57,    58,    59,    60,    61,    62,    50,    51,    89,
+      90,    91,    92,    94,    99,   103,   101,   102,    67,    23,
+     105,     0,    53,    54,    55,    56,    57,    58,    59,    60,
+      61,    62,    50,    51,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,    73,    50,    51,     0,    53,    54,    55,
+      56,    57,    58,    59,    60,    61,    62,     0,     0,    53,
+      54,    55,    56,    57,    58,    59,    60,    61,    62,    53,
+      54,    55,    56,    57,    58,    59,    60,    61,    62
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
-      20,    46,    17,    73,    19,     8,    26,    17,    18,    15,
-      25,    26,    93,    19,    95,    96,    27,    23,    24,    25,
-      26,    27,    18,    23,    27,    21,    46,    27,    19,    99,
-     111,    20,    13,    14,    54,    55,    56,    57,    58,    59,
-      60,    61,    62,    63,    19,    34,    35,    36,    37,    64,
-      65,    27,    97,     0,     3,     7,     5,     6,    20,    79,
-       9,    10,    11,    12,    36,    37,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    15,    97,    27,    22,
-      19,    27,    13,    14,    23,    24,    23,    26,    27,    20,
-      28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
-      19,    16,    13,    14,    23,    24,    13,    14,    27,    20,
-      19,    17,    18,    20,    16,    21,    34,    35,    36,    37,
-      13,    14,    16,    18,    22,    17,    23,     4,    17,    16,
-      20,    10,    23,    73
+      44,    17,    19,    19,    45,    11,    76,     8,    23,    23,
+      26,    27,     0,    19,    17,    18,     7,    23,    88,    89,
+      34,    19,    23,    17,    18,    32,    33,    21,    34,    35,
+      36,    37,   102,    18,    50,    51,    21,    53,    54,    55,
+      56,    57,    58,    59,    60,    61,    62,    91,    11,    90,
+      30,    31,    32,    33,    23,     3,    19,     5,     6,    23,
+      23,    22,     9,    10,    12,    13,    14,    15,    34,    19,
+      16,    34,    35,    20,    37,    23,    16,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    33,     9,    10,    16,
+      18,    17,    22,    34,     4,    34,    17,    16,    20,    10,
+      20,    -1,    24,    25,    26,    27,    28,    29,    30,    31,
+      32,    33,     9,    10,    -1,    -1,    -1,    -1,    -1,    -1,
+      -1,    -1,    -1,    20,     9,    10,    -1,    24,    25,    26,
+      27,    28,    29,    30,    31,    32,    33,    -1,    -1,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,     5,     6,     9,    10,    11,    12,    27,    39,
-      40,    41,    45,    48,    50,    52,    53,    19,    27,    19,
-      18,    21,     0,    39,    27,    15,    19,    23,    24,    26,
-      27,    56,    57,    58,    59,    60,     7,    60,    25,    46,
-      59,    60,    23,    27,    47,    17,    18,    21,    42,    44,
-      49,    60,    59,    60,    28,    29,    30,    31,    32,    33,
-      34,    35,    36,    37,    13,    14,    20,     8,    27,    54,
-      55,    20,    22,    27,    43,    46,    23,    20,    20,    19,
-      27,    59,    59,    59,    59,    59,    59,    59,    59,    59,
-      59,    60,    60,    16,    19,    16,    16,    18,    42,    44,
-      22,    59,    40,    23,    40,    40,    46,    42,     4,    51,
-      17,    16,    23,    40,    20
+       0,     3,     5,     6,    12,    13,    14,    15,    23,    39,
+      40,    41,    43,    46,    48,    50,    51,    19,    23,    19,
+      18,    21,     0,    39,    23,    42,    11,    19,    23,    34,
+      35,    37,    54,    55,    56,    57,     7,    57,    36,    44,
+      57,    23,    34,    45,    17,    18,    21,    47,    57,    57,
+       9,    10,    20,    24,    25,    26,    27,    28,    29,    30,
+      31,    32,    33,     8,    23,    52,    53,    20,    22,    23,
+      42,    44,    34,    20,    57,    57,    16,    57,    57,    57,
+      57,    57,    57,    57,    57,    57,    57,    19,    16,    16,
+      18,    17,    22,    40,    34,    40,    40,    44,    42,     4,
+      49,    17,    16,    34,    40,    20
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1446,17 +1471,677 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 3:
+        case 15:
 
 /* Line 1455 of yacc.c  */
-#line 21 "syntaxique.y"
-    { printf("Le programme est correcte syntaxiquement\n"); YYACCEPT; ;}
+#line 55 "syntaxique.y"
+    {
+                        if(get_sym((yyvsp[(1) - (3)].str))==NULL)
+                        {
+                                printf("idf new dec\n");
+                                put_sym((yyvsp[(1) - (3)].str));
+                                install_type((yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].valtype).type);
+                                install_value((yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].valtype));
+                        }else{
+                                printf("idf exists\n");
+                                if(get_sym((yyvsp[(1) - (3)].str))->type==(yyvsp[(3) - (3)].valtype).type)
+                                {
+                                        install_value((yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].valtype));
+                                }else{
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d type incompatibe\n", nb_ligne, nb_colone);YYABORT;
+                                }
+                        }
+                ;}
+    break;
+
+  case 17:
+
+/* Line 1455 of yacc.c  */
+#line 75 "syntaxique.y"
+    {
+                (yyval.valtype)=(yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 18:
+
+/* Line 1455 of yacc.c  */
+#line 78 "syntaxique.y"
+    {(yyval.valtype)=(yyvsp[(1) - (1)].valtype);;}
+    break;
+
+  case 21:
+
+/* Line 1455 of yacc.c  */
+#line 84 "syntaxique.y"
+    {(yyval.type) = (yyvsp[(1) - (1)].type);;}
+    break;
+
+  case 22:
+
+/* Line 1455 of yacc.c  */
+#line 85 "syntaxique.y"
+    {(yyval.type) = (yyvsp[(1) - (1)].type);;}
+    break;
+
+  case 23:
+
+/* Line 1455 of yacc.c  */
+#line 86 "syntaxique.y"
+    {(yyval.type) = (yyvsp[(1) - (1)].type);;}
+    break;
+
+  case 24:
+
+/* Line 1455 of yacc.c  */
+#line 87 "syntaxique.y"
+    {(yyval.type) = (yyvsp[(1) - (1)].type);;}
+    break;
+
+  case 34:
+
+/* Line 1455 of yacc.c  */
+#line 108 "syntaxique.y"
+    {
+                        (yyval.valtype).type = BOOL;
+                        if((yyvsp[(1) - (3)].valtype).type==BOOL && (yyvsp[(3) - (3)].valtype).type==BOOL)
+                        {
+                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.B && (yyvsp[(3) - (3)].valtype).val.B;
+                        }else{
+                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                        }
+                ;}
+    break;
+
+  case 35:
+
+/* Line 1455 of yacc.c  */
+#line 118 "syntaxique.y"
+    {
+                        (yyval.valtype).type = BOOL;
+                        if((yyvsp[(1) - (3)].valtype).type==BOOL && (yyvsp[(3) - (3)].valtype).type==BOOL)
+                        {
+                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.B || (yyvsp[(3) - (3)].valtype).val.B;
+                        }else{
+                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                        }
+                ;}
+    break;
+
+  case 36:
+
+/* Line 1455 of yacc.c  */
+#line 128 "syntaxique.y"
+    {
+                        (yyval.valtype).type = BOOL;
+                        if((yyvsp[(2) - (2)].valtype).type==BOOL)
+                        {
+                                (yyval.valtype).val.B = !(yyvsp[(2) - (2)].valtype).val.B;
+                        }else{
+                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                        }
+                ;}
+    break;
+
+  case 37:
+
+/* Line 1455 of yacc.c  */
+#line 140 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I == (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I == (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F == (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F == (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 38:
+
+/* Line 1455 of yacc.c  */
+#line 178 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I != (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I != (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F != (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F != (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 39:
+
+/* Line 1455 of yacc.c  */
+#line 216 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I <= (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I <= (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F <= (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F <= (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 40:
+
+/* Line 1455 of yacc.c  */
+#line 254 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I >= (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I >= (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F >= (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F >= (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 41:
+
+/* Line 1455 of yacc.c  */
+#line 292 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I < (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I < (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F < (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F < (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 42:
+
+/* Line 1455 of yacc.c  */
+#line 330 "syntaxique.y"
+    {
+                                (yyval.valtype).type = BOOL;
+
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I > (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.I > (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F > (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).val.B = (yyvsp[(1) - (3)].valtype).val.F > (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 43:
+
+/* Line 1455 of yacc.c  */
+#line 370 "syntaxique.y"
+    {
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = INT;
+                                                (yyval.valtype).val.I = (yyvsp[(1) - (3)].valtype).val.I * (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.I * (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F * (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F * (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 44:
+
+/* Line 1455 of yacc.c  */
+#line 410 "syntaxique.y"
+    {
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                if((yyvsp[(3) - (3)].valtype).val.I == 0){
+                                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d division par 0.", nb_ligne, nb_colone);
+                                                        YYABORT;
+                                                        break;
+                                                }else{
+                                                        (yyval.valtype).type = FLOAT;
+                                                        (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.I / (yyvsp[(3) - (3)].valtype).val.I;
+                                                        break;
+                                                }
+                                        case FLOAT:
+                                                if((yyvsp[(3) - (3)].valtype).val.F == 0){
+                                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d division par 0.", nb_ligne, nb_colone);
+                                                        YYABORT;
+                                                        break;
+                                                }else{
+                                                        (yyval.valtype).type = FLOAT;
+                                                        (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.I / (yyvsp[(3) - (3)].valtype).val.F;
+                                                        break;
+                                                }
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                if((yyvsp[(3) - (3)].valtype).val.I == 0){
+                                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d division par 0.", nb_ligne, nb_colone);
+                                                        YYABORT;
+                                                        break;
+                                                }else{
+                                                        (yyval.valtype).type = FLOAT;
+                                                        (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F / (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                        break;
+                                                }
+                                        case FLOAT:
+                                                if((yyvsp[(3) - (3)].valtype).val.F == 0){
+
+                                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d division par 0.", nb_ligne, nb_colone);
+                                                        YYABORT;
+                                                        break;
+                                                }else{
+                                                        (yyval.valtype).type = FLOAT;
+                                                        (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F / (yyvsp[(3) - (3)].valtype).val.F;
+                                                        break;
+                                                }
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 45:
+
+/* Line 1455 of yacc.c  */
+#line 475 "syntaxique.y"
+    {
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = INT;
+                                                (yyval.valtype).val.I = (yyvsp[(1) - (3)].valtype).val.I + (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.I + (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F + (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F + (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 46:
+
+/* Line 1455 of yacc.c  */
+#line 515 "syntaxique.y"
+    {
+                                switch((yyvsp[(1) - (3)].valtype).type){
+                                case INT :
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = INT;
+                                                (yyval.valtype).val.I = (yyvsp[(1) - (3)].valtype).val.I - (yyvsp[(3) - (3)].valtype).val.I;
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.I - (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                case FLOAT:
+                                        switch((yyvsp[(3) - (3)].valtype).type){
+                                        case INT :
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F - (yyvsp[(3) - (3)].valtype).val.I;                                
+                                                break;
+                                        case FLOAT:
+                                                (yyval.valtype).type = FLOAT;
+                                                (yyval.valtype).val.F = (yyvsp[(1) - (3)].valtype).val.F - (yyvsp[(3) - (3)].valtype).val.F;
+                                                break;
+                                        default:
+                                                printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                                break;
+                                        }
+                                        break;
+
+                                default:
+                                        printf("ERROR SEMENTIQUE: ligne %d, colonne %d invalid type.\n", nb_ligne, nb_colone);YYABORT;
+                                        break;
+                                }
+                        ;}
+    break;
+
+  case 47:
+
+/* Line 1455 of yacc.c  */
+#line 557 "syntaxique.y"
+    {
+                symrec *elem = get_sym((yyvsp[(1) - (1)].str));
+                (yyval.valtype).type = elem->type;
+                switch (elem->type)
+                {
+                case INT :
+                (yyval.valtype).val.I = elem->value.I;
+                break;
+                case FLOAT :
+                (yyval.valtype).val.F = elem->value.F;
+                break;
+                case CHAR :
+                (yyval.valtype).val.C = elem->value.C;
+                break;
+                case BOOL :
+                (yyval.valtype).val.B = elem->value.B;
+                break;
+                
+                default:
+                printf("ERROR: UNKNOWN TYPE");
+                break;
+                }
+        ;}
+    break;
+
+  case 48:
+
+/* Line 1455 of yacc.c  */
+#line 581 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 49:
+
+/* Line 1455 of yacc.c  */
+#line 585 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 50:
+
+/* Line 1455 of yacc.c  */
+#line 589 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 51:
+
+/* Line 1455 of yacc.c  */
+#line 593 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 52:
+
+/* Line 1455 of yacc.c  */
+#line 597 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 53:
+
+/* Line 1455 of yacc.c  */
+#line 601 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(1) - (1)].valtype);
+        ;}
+    break;
+
+  case 54:
+
+/* Line 1455 of yacc.c  */
+#line 605 "syntaxique.y"
+    {
+                (yyval.valtype) = (yyvsp[(2) - (3)].valtype);
+        ;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1460 "syntaxique.tab.c"
+#line 2145 "syntaxique.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1668,21 +2353,27 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 109 "syntaxique.y"
+#line 610 "syntaxique.y"
 
 
 main()
 {
-        Init_TS();
+        //Init_TS();
         yyparse();
-        Print_TS();
+        //Print_TS();
+        print_table();
+        if(num_errors==0){
+                printf("Le programme est correcte syntaxiquement\n");
+        }
 }
 yywrap()
 {
 
 }
-int yyerror (char *msg )
+yyerror ()
 { 
+        num_errors++;
         printf ("ERREUR SYNTAXIQUE: ligne %d, colonne %d \n",nb_ligne,nb_colone); 
         return 1; 
 }
+

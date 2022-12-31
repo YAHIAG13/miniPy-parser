@@ -8,7 +8,7 @@ a flex/bison parser for mini python (python like with only the basic instruction
 
 `bison syntaxique.y -d`
 
-`gcc lex.yy.c syntaxique.tab.c -o parser.exe -lfl`
+`gcc lex.yy.c syntaxique.tab.c tv.c -o parser.exe -lfl`
 
 ## Execution: (use command prompt)
 
