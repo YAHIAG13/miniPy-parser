@@ -10,6 +10,7 @@ extern nb_colone;
 #include"ts.h" 
 #include"syntaxique.tab.h"
 #include"other.h"
+#include"quad.h"
 
 extern YYSTYPE yylval;
 
@@ -25,6 +26,7 @@ char '({lettreMaj}|{lettreMin}|{chiffre})'
 int \({signe}?{chiffre}+\)|{chiffre}+
 float \({signe}?{chiffre}+\.{chiffre}+\)|{chiffre}+\.{chiffre}+
 bool ("true"|"false")
+indentation (\t|"    ")+
 
 comment #.*
 
@@ -147,7 +149,6 @@ not     {
         }
 {idf}   {   printf("%s : idf\n", yytext);
             nb_colone += strlen(yytext);
-            Find_TS(yytext, "identifier", "", 0, EV);
             yylval.str = (char *) strdup(yytext);
             return idf;
         }
@@ -241,7 +242,10 @@ not     {
             return closeBracket;
         }
 
-[ \t] {nb_colone += strlen(yytext);}
-\n {nb_ligne++; nb_colone = 1;}
+{indentation} {nb_colone += strlen(yytext); return ident;}
+
+" "     {nb_colone += strlen(yytext);}
+
+\n {nb_ligne++; nb_colone = 1; return newLine;}
 . {printf("ERREUR LEXICAL: line %d, colonne %d, entite: %s\n",nb_ligne,nb_colone,yytext);}
 %%

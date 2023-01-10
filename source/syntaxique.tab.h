@@ -35,7 +35,7 @@
 /* "%code requires" blocks.  */
 
 /* Line 1676 of yacc.c  */
-#line 8 "syntaxique.y"
+#line 13 "syntaxique.y"
 
         #include"tv.h"
 
@@ -59,32 +59,34 @@
      mc_and = 264,
      mc_or = 265,
      mc_not = 266,
-     mc_int = 267,
-     mc_float = 268,
-     mc_char = 269,
-     mc_bool = 270,
-     colon = 271,
-     comma = 272,
-     assign = 273,
-     openParenthesis = 274,
-     closeParenthesis = 275,
-     openBracket = 276,
-     closeBracket = 277,
-     idf = 278,
-     lessOrEqual = 279,
-     greatOrEqual = 280,
-     less = 281,
-     great = 282,
-     equal = 283,
-     notEqual = 284,
-     pls = 285,
-     min = 286,
-     divs = 287,
-     mul = 288,
-     integer = 289,
-     real = 290,
-     character = 291,
-     booleen = 292
+     newLine = 267,
+     ident = 268,
+     mc_int = 269,
+     mc_float = 270,
+     mc_char = 271,
+     mc_bool = 272,
+     colon = 273,
+     comma = 274,
+     assign = 275,
+     openParenthesis = 276,
+     closeParenthesis = 277,
+     openBracket = 278,
+     closeBracket = 279,
+     idf = 280,
+     lessOrEqual = 281,
+     greatOrEqual = 282,
+     less = 283,
+     great = 284,
+     equal = 285,
+     notEqual = 286,
+     pls = 287,
+     min = 288,
+     divs = 289,
+     mul = 290,
+     integer = 291,
+     real = 292,
+     character = 293,
+     booleen = 294
    };
 #endif
 
@@ -95,7 +97,7 @@ typedef union YYSTYPE
 {
 
 /* Line 1676 of yacc.c  */
-#line 12 "syntaxique.y"
+#line 17 "syntaxique.y"
 
         char type;
         char *str;
@@ -104,7 +106,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 108 "syntaxique.tab.h"
+#line 110 "syntaxique.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

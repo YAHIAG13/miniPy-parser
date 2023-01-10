@@ -118,7 +118,7 @@ void Find_TS(char name[], char code[], char type[], float val, const int typeE){
 void Print_TS(){
     int i;
     printf("\n");
-    printf("    ||*************** Table des symboles IDF **************||\n");
+    printf("    ||************ Table des symboles Constants ************||\n");
     printf("    _________________________________________________________\n");
     printf("    | Nom_Entite |  Code_Entite |  Type_Entite | Val_Entite |\n");
     printf("    _________________________________________________________\n");

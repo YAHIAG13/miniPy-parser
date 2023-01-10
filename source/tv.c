@@ -53,23 +53,27 @@ void print_table()
 {   
     
     symrec *elem ;
-    printf("\nVariables Table :\n");
+    printf("\n");
+    printf("    ||********************* Table des Variables ********************||\n");
+    printf("    ________________________________________________________________\n");
+    printf("    | NomVariable           | TypeVariable | ValeurInitiale        |\n");
+    printf("    ________________________________________________________________\n");
     for (elem = sym_table; elem!=NULL; elem = elem->next)
     {
-        printf("|%15s | %15c |", elem->name, elem->type);
+        printf("    | %21s | %12c |", elem->name, elem->type);
         switch (elem->type)
         {
         case INT :
-            printf(" %15d |\n", elem->value.I);
+            printf(" %21d |\n", elem->value.I);
             break;
         case FLOAT :
-            printf(" %15f |\n", elem->value.F);
+            printf(" %21f |\n", elem->value.F);
             break;
         case CHAR :
-            printf(" %15c |\n", elem->value.C);
+            printf(" %21c |\n", elem->value.C);
             break;
         case BOOL :
-            printf(" %15s |\n", elem->value.B ? "true" : "false");
+            printf(" %21s |\n", elem->value.B ? "true" : "false");
             break;
         
         default:

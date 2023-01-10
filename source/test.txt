@@ -1,9 +1,23 @@
-# this is a comment
-newChar = 'F'
-i = 0
-i = i+2
-divTestVar = 20.5 / 5
-pi = 3.14 + 6.86
-negfloat = (-69.420)
-isReady = true
-comp = not(((55 - 45) >= (pi + negfloat)) and (isReady))
+
+int tabf[5]
+float i, a=(-2.13)
+int j = 10
+while (a != 6) :
+    x = 10
+    m = 100
+    tabf[a] = 9
+
+
+if(m == 100):
+    newbool = true
+
+
+else :
+    newbool = false
+i = (-55.0)
+if(newbool and x > 10):
+    x = 5555
+
+for j in range(0, 10):
+    a = i + 99
+x = 10
