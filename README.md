@@ -2,7 +2,7 @@
 
 a flex/bison parser for miniPy.
 
-## Compilataion:
+## Compilation:
 
 `flex lexical.l`
 
